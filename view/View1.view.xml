@@ -1,0 +1,114 @@
+<mvc:View controllerName="com.qb2i4.qb2i4.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table">
+	
+	<l:VerticalLayout width="100%">
+		<Label text="{i18n>title}"/>
+		<fb:FilterBar reset="onReset" search="onShow" clear="onClear" id="btnId" showRestoreButton="true" showClearButton="true">
+			<fb:filterGroupItems>
+				<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="Date" partOfCurrentVariant="true" visibleInFilterBar="true" mandatory="true">
+					<fb:control>
+					
+							<DateRangeSelection id="DRS3" change="handleChange" width="100%"/>
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="Plant" labelTooltip="Plant" mandatory="true"
+					partOfCurrentVariant="true" visibleInFilterBar="true">
+					<fb:control>
+						<ComboBox items="{ path: '/pList' }" id="mb" change="funcA" placeholder="Plant">
+								<core:Item key="{Plant}" text="{Plant}"/>
+							</ComboBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!--<fb:FilterGroupItem groupName="__$INTERNAL$" name="C"  labelTooltip="Open" -->
+				<!--	partOfCurrentVariant="true" visibleInFilterBar="true">-->
+				<!--	<fb:control>-->
+				<!--		<FlexBox height="40px" alignItems="End" >-->
+				<!--		<items>-->
+							<!--<l:HorizontalLayout class="sapUiContentPadding">-->
+							<!--<m:Label text="MRP Report"/>-->
+							<!--</l:HorizontalLayout>-->
+				<!--			<Button icon="sap-icon://chain-link" id="button1" text="Display Pur. Req." press="onOpen"/>-->
+				<!--		</items>-->
+				<!--	</FlexBox>-->
+
+				<!--	</fb:control>-->
+				<!--</fb:FilterGroupItem>-->
+				<!--	<fb:FilterGroupItem groupName="__$INTERNAL$" name="D"  labelTooltip="Download Excel" -->
+				<!--	partOfCurrentVariant="false" visibleInFilterBar="false">-->
+				<!--	<fb:control>-->
+				<!--		<FlexBox height="30px" alignItems="End" >-->
+				<!--		<items>-->
+							<!--<l:HorizontalLayout class="sapUiContentPadding">-->
+							<!--<m:Label text="MRP Report"/>-->
+							<!--</l:HorizontalLayout>-->
+				<!--		<Button xmlns="sap.m" text="Download Excel" id="button2" press="onDataExport" icon="sap-icon://download-from-cloud"/>-->
+				<!--		</items>-->
+				<!--	</FlexBox>-->
+
+				<!--	</fb:control>-->
+				<!--</fb:FilterGroupItem>-->
+			</fb:filterGroupItems>
+		</fb:FilterBar>
+		
+			<FlexBox height="23px" alignItems="End" alignContent="End" justifyContent="End">
+						<items>
+							<!--<l:HorizontalLayout class="sapUiContentPadding">-->
+						
+							<!--</l:HorizontalLayout>-->
+							<Button icon="sap-icon://chain-link" id="button1" text="Display Pur. Req." press="onOpen"/>
+							<Button xmlns="sap.m" text="Download Excel" id="button2" press="onDataExport" icon="sap-icon://download-from-cloud"/>
+						</items>
+					</FlexBox>
+	</l:VerticalLayout>
+
+						<Table items="{MRP>/finalList}" id="tab" growingDirection="Downwards" growing="true" growingThreshold="200" >
+							<columns>
+								<Column styleClass="admin">
+									<Label text="Purchase Requisition"/>
+								</Column>
+								<Column styleClass="admin">
+									<Label text="Item"/>
+								</Column>
+								<Column styleClass="admin">
+									<Label text="Plant"/>
+								</Column>
+								<Column styleClass="admin">
+									<Label text="Material"/>
+								</Column>
+								<!--<Column styleClass="admin">-->
+								<!--	<Label text="Actual need date"/>-->
+								<!--</Column>-->
+								<Column styleClass="admin">
+									<Label text="Requested Delivery Date"/>
+								</Column>
+								<Column styleClass="admin">
+									<Label text="Delivery Date"/>
+								</Column>
+									<Column styleClass="admin">
+									<Label text="Actual need date"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<Text text="{MRP>SourceMRPElement}"/>
+									<Text text="{MRP>SourceMRPElementItem}"/>
+									<Text text="{MRP>MRPPlant}"/>
+									<Text text="{MRP>Material}"/>
+									<!--<Text text="{MRP>MRPElementAvailyOrRqmtDate}"/>-->
+									<Text text="{MRP>RequestedDeliveryDate}"/>
+									<Text text="{MRP>DeliveryDate}"/>
+									<Text text="{MRP>ExceptionMessageText}"/>
+								</ColumnListItem>
+							</items>
+						</Table>
+				
+
+	
+	
+	
+	
+
+
+</mvc:View>
