@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:Reference
+		Uri="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/></edmx:Reference>
+	<edmx:Reference
+		Uri="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="YY1_PUR_REQ_MRP_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="YY1_Pur_req_MRPType" sap:label="Pur_req_MRP" sap:content-version="1">
+				<Key><PropertyRef Name="PurchaseRequisition"/><PropertyRef Name="PurchaseRequisitionItem"/><PropertyRef Name="Plant"/><PropertyRef Name="CreationDate"/></Key><Property Name="PurchaseRequisition" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase"
+					sap:required-in-filter="false" sap:label="Purchase requisition" sap:quickinfo="Purchase requisition number"/><Property Name="PurchaseRequisitionItem" Type="Edm.String" Nullable="false" MaxLength="5" sap:display-format="NonNegative"
+					sap:required-in-filter="false" sap:label="Requisn. item" sap:quickinfo="Item number of purchase requisition"/><Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:required-in-filter="false"
+					sap:label="Plant"/><Property Name="CreationDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:required-in-filter="false"
+					sap:label="Requisition Date" sap:quickinfo="Requisition (Request) Date"/><Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:required-in-filter="false"
+					sap:label="Material" sap:quickinfo="Material Number"/><Property Name="RequestedDeliveryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:required-in-filter="false"
+					sap:label="RequestedDeliveryDate" sap:quickinfo="Schedule line date"/><Property Name="DeliveryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:required-in-filter="false"
+					sap:label="Delivery date" sap:quickinfo="Item delivery date"/><Property Name="AccountAssignmentCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:required-in-filter="false"
+					sap:label="Acct Assignment Cat." sap:quickinfo="Account Assignment Category"/><Property Name="ZZITEM" Type="Edm.String" MaxLength="5" sap:required-in-filter="false" sap:label="ZZITEM" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:required-in-filter="false"
+					sap:label="Desired Supplier"/><Property Name="FixedSupplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:required-in-filter="false"
+					sap:label="Fixed Supplier"/></EntityType>
+			<EntityContainer Name="YY1_PUR_REQ_MRP_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="YY1_Pur_req_MRP" EntityType="YY1_PUR_REQ_MRP_CDS.YY1_Pur_req_MRPType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/></EntityContainer>
+			<Annotations Target="YY1_PUR_REQ_MRP_CDS.YY1_PUR_REQ_MRP_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm"><Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations><atom:link rel="self" href="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/sap/YY1_PUR_REQ_MRP_CDS/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version" href="https://my301187.s4hana.ondemand.com:443/sap/opu/odata/sap/YY1_PUR_REQ_MRP_CDS/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
