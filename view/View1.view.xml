@@ -1,0 +1,261 @@
+<mvc:View controllerName="com.qb2i4.qb2i4.controller.View1" xmlns:table="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified"
+	xmlns:m="sap.m" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:vm="sap.ui.comp.variants"
+	xmlns:fo="sap.ui.layout.form" xmlns:l="sap.ui.layout" displayBlock=" true">
+	<!--<Shell id="shell">-->
+	<m:App id="app" autoFocus="true" height="100%">
+		<m:pages >
+			<m:Page id="page" title="IT_PR_Actual Need date Vs Delivery Date" titleLevel="H1" visible="true">
+				<m:content >
+					<fb:FilterBar id="filterbar" reset="onReset" search="onShow" clear="onClear" showRestoreButton="true" showClearButton="true">
+						<fb:filterGroupItems >
+							<fb:FilterGroupItem groupName="__$INTERNAL$" mandatory="true" name="E" label="Creation Date" partOfCurrentVariant="true"
+								visibleInFilterBar="true">
+								<fb:control>
+									<m:DateRangeSelection id="DRS3" change="handleChange" width="100%"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" mandatory="true" name="X" label="Plant " partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<m:ComboBox items="{ path: '/pList' }" id="mb" change="funcA" placeholder="Plant">
+										<core:Item key="{Plant}" text="{Plant}"/>
+									</m:ComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+					<m:FlexBox height="40px" alignItems="End" justifyContent="End">
+						<m:items>
+							<m:Button icon="sap-icon://chain-link" id="button1" text="Manage Pur. Req." press="onOpen"/>
+							<m:Button xmlns="sap.m" text="Download Excel" id="button2" press="onDataExport" icon="sap-icon://download-from-cloud"/>
+						</m:items>
+					</m:FlexBox>
+					<table:Table id="tab" selectionMode="None" visibleRowCount="10" ariaLabelledBy="title" enableGrouping="true" rows="{MRP>/finalList}"
+						enableBusyIndicator="true" alternateRowColors="true">
+						<table:columns>
+							<table:Column sortProperty="SourceMRPElement" filterProperty="SourceMRPElement" autoResizable="true" width="4rem">
+								<m:Label text="Purchase Requisition"/>
+								<table:template>
+									<m:Text text="{MRP>SourceMRPElement}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="SourceMRPElementItem" filterProperty="SourceMRPElementItem" autoResizable="true" width="8rem">
+								<m:Label text="Item"/>
+								<table:template>
+									<m:Text text="{MRP>SourceMRPElementItem}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<!--<table:Column sortProperty="PurchasingGroup" filterProperty="PurchasingGroup" autoResizable="true" width="4rem">-->
+							<!--	<m:Label text="Pur. Grp."/>-->
+							<!--	<table:template>-->
+							<!--		<m:Text text="{MRP>PurchasingGroup}" wrapping="false"/>-->
+							<!--	</table:template>-->
+							<!--</table:Column>-->
+							<!--<table:Column sortProperty="SalesDocument" filterProperty="SalesDocument" autoResizable="true" width="6rem">-->
+							<!--	<m:Label text="Sales Doc"/>-->
+							<!--	<table:template>-->
+							<!--		<m:Text text="{MRP>SalesDocument}" wrapping="false"/>-->
+							<!--	</table:template>-->
+							<!--</table:Column>-->
+							<table:Column sortProperty="MRPPlant" filterProperty="MRPPlant" autoResizable="true" width="4rem">
+								<m:Label text="Plant"/>
+								<table:template>
+									<m:Text text="{MRP>MRPPlant}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="MRPArea" filterProperty="MRPArea" autoResizable="true" width="6rem">
+								<m:Label text="MRP Area"/>
+								<table:template>
+									<m:Text text="{MRP>MRPArea}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="MRPController" filterProperty="MRPController" autoResizable="true" width="8rem">
+								<m:Label text="MRP Controller"/>
+								<table:template>
+									<m:Text text="{MRP>MRPController}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="Material" filterProperty="Material" autoResizable="true" width="8rem">
+								<m:Label text="Material"/>
+								<table:template>
+									<m:Text text="{MRP>Material}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="ProductDescription" filterProperty="ProductDescription" autoResizable="true" width="8rem">
+								<m:Label text="Material Description"/>
+								<table:template>
+									<m:Text text="{MRP>ProductDescription}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="FixedSupplier" filterProperty="FixedSupplier" autoResizable="true" width="6rem">
+								<m:Label text="Supplier"/>
+								<table:template>
+									<m:Text text="{MRP>FixedSupplier}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="OrganizationBPName1" filterProperty="OrganizationBPName1" autoResizable="true" width="8rem">
+								<m:Label text="Supplier Name"/>
+								<table:template>
+									<m:Text text="{MRP>OrganizationBPName1}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="DeliveryDate" filterProperty="DeliveryDate" autoResizable="true" width="6rem">
+								<m:Label text="Delivery Date"/>
+								<table:template>
+									<m:Text text="{MRP>DeliveryDate}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="ExceptionMessageText" filterProperty="ExceptionMessageText" autoResizable="true" width="14rem">
+								<m:Label text="Actual Need Date"/>
+								<table:template>
+									<!--<Text text="{ path: '/navList>MRPElementAvailyOrRqmtDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd:MM:yyyy', UTC: true } }"/>-->
+									<m:Text text="{MRP>ExceptionMessageText}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column sortProperty="RequestedDeliveryDate" filterProperty="RequestedDeliveryDate" autoResizable="true" width="12rem">
+								<m:Label text="Requested Delivery Date"/>
+								<table:template>
+									<m:Text text="{MRP>RequestedDeliveryDate}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+						</table:columns>
+					</table:Table>
+				</m:content>
+			</m:Page>
+		</m:pages>
+	</m:App>
+	<!--<App id="app">-->
+	<!--	<pages>-->
+	<!--		<Page id="page" title="{i18n>title}">-->
+	<!--			<content>-->
+	<!--<Label text="Plant" vAlign="Middle"/>-->
+	<!--<Input  required="true" id="a" width="25%"/> -->
+	<!--<Button text="Go" press="funcA" />-->
+	<!--<Button text="Auto" press="abcd" />-->
+	<!--				<HBox width="100%">-->
+	<!--					<ComboBox items="{ path: '/pList' }" id="mb" change="funcA" placeholder="Plant">-->
+	<!--						<core:Item key="{Plant}" text="{Plant}"/>-->
+	<!--					</ComboBox>-->
+	<!--	<VBox class="sapUiSmallMargin">-->
+	<!--<Label text="DateRangeSelection with OK button in the footer:" labelFor="DRS3"/>-->
+	<!--					<DateRangeSelection id="DRS3" change="handleChange" width="100%"/>-->
+	<!--</VBox>-->
+	<!--					<Button text="Display" press="onShow" id="btnId"/>-->
+	<!--					<HBox width="60%"></HBox>-->
+	<!--					<Button icon="sap-icon://chain-link" tooltip="Display Pur. Req" text="Display Pur. Req." press="onOpen"></Button>-->
+	<!--<html:a href="https://my301187.s4hana.ondemand.com/ui#PurchaseRequisition-manage?source=lpd">Display Pur. Req</html:a>-->
+	<!--					<Button icon="sap-icon://excel-attachment" text="Download" press="onDataExport" tooltip="{i18n>download}" id="download"/>-->
+	<!--				</HBox>-->
+	<!--				<Table items="{MRP>/finalList}" id="tab">-->
+	<!--					<columns>-->
+	<!--						<Column styleClass="admin">-->
+	<!--							<Label text="PR"/>-->
+	<!--						</Column>-->
+	<!--						<Column styleClass="admin">-->
+	<!--							<Label text="PR Item"/>-->
+	<!--						</Column>-->
+	<!--						<Column styleClass="admin">-->
+	<!--							<Label text="Plant"/>-->
+	<!--						</Column>-->
+	<!--						<Column styleClass="admin">-->
+	<!--							<Label text="Material"/>-->
+	<!--						</Column>-->
+	<!--						<Column styleClass="admin">-->
+	<!--							<Label text="Actual need date"/>-->
+	<!--						</Column>-->
+	<!--						<Column styleClass="admin">-->
+	<!--							<Label text="Requested Delivery Date"/>-->
+	<!--						</Column>-->
+	<!--						<Column styleClass="admin">-->
+	<!--							<Label text="Delivery Date"/>-->
+	<!--						</Column>-->
+	<!--					</columns>-->
+	<!--					<items>-->
+	<!--						<ColumnListItem>-->
+	<!--							<Text text="{MRP>SourceMRPElement}"/>-->
+	<!--							<Text text="{MRP>SourceMRPElementItem}"/>-->
+	<!--							<Text text="{MRP>MRPPlant}"/>-->
+	<!--							<Text text="{MRP>Material}"/>-->
+	<!--							<Text text="{MRP>MRPElementAvailyOrRqmtDate}"/>-->
+	<!--							<Text text="{MRP>RequestedDeliveryDate}"/>-->
+	<!--							<Text text="{MRP>DeliveryDate}"/>-->
+	<!--						</ColumnListItem>-->
+	<!--					</items>-->
+	<!--				</Table>-->
+	<!--			</content>-->
+	<!--		</Page>-->
+	<!--	</pages>-->
+	<!--</App>-->
+	<!--</Shell>-->
+</mvc:View>
+<!--<mvc:View controllerName="com.qb2i4.qb2i4.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"-->
+<!--	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout"-->
+<!--	xmlns:table="sap.ui.table">-->
+<!--	<l:VerticalLayout width="100%">-->
+<!--		<Label text="{i18n>title}"/>-->
+<!--		<fb:FilterBar reset="onReset" search="onShow" clear="onClear" id="btnId" showRestoreButton="true" showClearButton="true">-->
+<!--			<fb:filterGroupItems>-->
+<!--				<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="Date" partOfCurrentVariant="true" visibleInFilterBar="true" mandatory="true" >-->
+<!--					<fb:control>-->
+<!--						<DateRangeSelection id="DRS3" change="handleChange" width="100%" />-->
+<!--					</fb:control>-->
+<!--				</fb:FilterGroupItem>-->
+<!--				<fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="Plant" labelTooltip="Plant" mandatory="true" partOfCurrentVariant="true"-->
+<!--					visibleInFilterBar="true">-->
+<!--					<fb:control>-->
+<!--						<ComboBox items="{ path: '/pList' }" id="mb" change="funcA" placeholder="Plant">-->
+<!--							<core:Item key="{Plant}" text="{Plant}"/>-->
+<!--						</ComboBox>-->
+<!--					</fb:control>-->
+<!--				</fb:FilterGroupItem>-->
+<!--			</fb:filterGroupItems>-->
+<!--		</fb:FilterBar>-->
+<!--		<FlexBox height="23px" alignItems="End" alignContent="End" justifyContent="End">-->
+<!--			<items>-->
+<!--				<Button icon="sap-icon://chain-link" id="button1" text="Manage Pur. Req." press="onOpen"/>-->
+<!--				<Button xmlns="sap.m" text="Download Excel" id="button2" press="onDataExport" icon="sap-icon://download-from-cloud"/>-->
+<!--			</items>-->
+<!--		</FlexBox>-->
+<!--	</l:VerticalLayout>-->
+<!--	<Table items="{MRP>/finalList}" sticky="ColumnHeaders,HeaderToolbar" id="tab" growingDirection="Downwards" growing="true" growingThreshold="5000" alternateRowColors="true">-->
+<!--		<columns >-->
+<!--			<Column styleClass="admin">-->
+<!--				<Label text="Purchase Requisition"/>-->
+<!--			</Column>-->
+<!--			<Column styleClass="admin">-->
+<!--				<Label text="Item"/>-->
+<!--			</Column>-->
+<!--			<Column styleClass="admin">-->
+<!--				<Label text="Plant"/>-->
+<!--			</Column>-->
+<!--			<Column styleClass="admin">-->
+<!--				<Label text="Material"/>-->
+<!--			</Column>-->
+<!--<Column styleClass="admin">-->
+<!--	<Label text="Actual need date"/>-->
+<!--</Column>-->
+<!--			<Column styleClass="admin">-->
+<!--				<Label text="Delivery Date"/>-->
+<!--			</Column>-->
+<!--			<Column styleClass="admin">-->
+<!--				<Label text="Actual need date"/>-->
+<!--			</Column>-->
+<!--			<Column styleClass="admin">-->
+<!--				<Label text="Requested Delivery Date"/>-->
+<!--			</Column>-->
+<!--		</columns>-->
+<!--		<items>-->
+<!--			<ColumnListItem >-->
+<!--				<Text text="{MRP>SourceMRPElement}"/>-->
+<!--				<Text text="{MRP>SourceMRPElementItem}"/>-->
+<!--				<Text text="{MRP>MRPPlant}"/>-->
+<!--				<Text text="{MRP>Material}"/>-->
+<!--<Text text="{MRP>MRPElementAvailyOrRqmtDate}"/>-->
+<!--				<Text text="{MRP>DeliveryDate}"/>-->
+<!--				<Text text="{MRP>ExceptionMessageText}"/>-->
+<!--				<Text text="{MRP>RequestedDeliveryDate}"/>-->
+<!--			</ColumnListItem>-->
+<!--		</items>-->
+<!--	</Table>-->
+<!--</mvc:View>-->
